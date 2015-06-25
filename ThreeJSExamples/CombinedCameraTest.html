@@ -25,8 +25,8 @@
 
 		<div style="position: absolute; top: 10px; width: 100%; text-align: center; ">
 			<a href="http://threejs.org" target="_blank">three.js</a> - Combo Camera<br>
-			View: <a href="#" onclick="setOrthographic();return false;"> Orthographic</a> |
-				<a href="#" onclick="setPerspective();return false;">Perspective</a><br>
+			View: <a href="#" onclick="setOrthographic();"> Orthographic</a> |
+				<a href="#" onclick="setPerspective();">Perspective</a><br>
 				<br/>
 			Views: <a href="#" onclick="camera.toTopView();">Top view</a> |
 				<a href="#" onclick="camera.toBottomView();">Bottom view</a> |
@@ -55,8 +55,7 @@
 				camera.zoom = 3.25; //2.2;
 				camera.updateProjectionMatrix();
 				controls.enabled = true;
-				document.getElementById('fov').innerHTML = 'Orthographic mode' 
-				toggleWireframe(true);
+				document.getElementById('fov').innerHTML = 'Orthographic mode';
 			}
 
 			function setPerspective() 
@@ -66,7 +65,7 @@
 				camera.zoom = 1.0;
 				camera.updateProjectionMatrix();
 				controls.enabled = true;
-				document.getElementById('fov').innerHTML = 'Perspective mode' ;
+				document.getElementById('fov').innerHTML = 'Perspective mode';
 			}
 
 			function setRightView()
