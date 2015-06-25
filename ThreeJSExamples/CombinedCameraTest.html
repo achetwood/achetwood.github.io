@@ -42,7 +42,7 @@
 
 		<script>
 			var container, stats;
-			var camera, scene, renderer;
+			var camera, scene, renderer, controls;
 			// var lookAtScene = true;
 			
 			init();
@@ -143,6 +143,7 @@
 				camera.position.y = 100;
 				camera.position.z = 200;
 				scene = new THREE.Scene();
+				
 				// Grid
 				var size = 500, step = 50;
 				var geometry = new THREE.Geometry();
@@ -155,6 +156,7 @@
 				var material = new THREE.LineBasicMaterial( { color: 0x000000, opacity: 0.2 } );
 				var line = new THREE.Line( geometry, material );
 				scene.add( line );
+				
 				// Cubes
 				var geometry = new THREE.BoxGeometry( 50, 50, 50 );
 				var material = new THREE.MeshLambertMaterial( { color: 0xffffff, shading: THREE.FlatShading, overdraw: 0.5 } );
@@ -166,15 +168,18 @@
 					cube.position.z = Math.floor( ( Math.random() * 1000 - 500 ) / 50 ) * 50 + 25;
 					scene.add(cube);
 				}
+				
 				// Lights
 				var ambientLight = new THREE.AmbientLight( Math.random() * 0x10 );
 				scene.add( ambientLight );
+				
 				var directionalLight = new THREE.DirectionalLight( Math.random() * 0xffffff );
 				directionalLight.position.x = Math.random() - 0.5;
 				directionalLight.position.y = Math.random() - 0.5;
 				directionalLight.position.z = Math.random() - 0.5;
 				directionalLight.position.normalize();
 				scene.add( directionalLight );
+				
 				var directionalLight = new THREE.DirectionalLight( Math.random() * 0xffffff );
 				directionalLight.position.x = Math.random() - 0.5;
 				directionalLight.position.y = Math.random() - 0.5;
@@ -185,6 +190,12 @@
 				renderer.setClearColor( 0xf0f0f0 );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
+				
+				controls = new THREE.OrbitControls(camera, renderer.domElement);
+				controls.target = new THREE.Vector3(0, 0, 0);
+				controls.minDistance = 1;
+				controls.maxDistance = 5632;
+			
 				container.appendChild( renderer.domElement );
 
 				window.addEventListener( 'resize', onWindowResize, false );
@@ -198,13 +209,13 @@
 			function animate() {
 				requestAnimationFrame( animate );
 				render();
-				stats.update();
+
+				if ( controls.enabled === true ) {
+					controls.update();
+				}	
 			}
 			function render() {
-				var timer = Date.now() * 0.0001;
-				camera.position.x = Math.cos( timer ) * 200;
-				camera.position.z = Math.sin( timer ) * 200;
-				if ( lookAtScene ) camera.lookAt( scene.position );
+
 				renderer.render( scene, camera );
 			}
 		</script>
