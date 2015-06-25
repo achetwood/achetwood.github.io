@@ -51,7 +51,7 @@
 			function setOrthographic() 
 			{
 				camera.toOrthographic();
-				controls.reset();
+				// controls.reset();
 				camera.zoom = 3.0; //2.2;
 				camera.updateProjectionMatrix();
 				controls.enabled = true;
@@ -61,7 +61,7 @@
 			function setPerspective() 
 			{
 				camera.toPerspective();
-				controls.reset();
+				// controls.reset();
 				camera.zoom = 1.0;
 				camera.updateProjectionMatrix();
 				controls.enabled = true;
@@ -205,7 +205,8 @@
 				}
 			}
 			//
-			function animate() {
+			function animate() 
+			{
 				requestAnimationFrame( animate );
 				render();
 
@@ -213,8 +214,9 @@
 					controls.update();
 				}	
 			}
-			function render() {
-
+			
+			function render() 
+			{
 				renderer.render( scene, camera );
 			}
 		</script>
