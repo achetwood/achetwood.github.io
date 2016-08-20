@@ -105,9 +105,9 @@ Zegami.prototype.start = function(img) {
 			// Set variable ready for loop when adding images.
 			var x = 0;
 			var y = 0;
-			for ( y; y < this.numImgY; y++ )
+			for ( y; y < Zegami.numImgY; y++ )
 			{
-				for ( x; x < this.numImgX; x++)
+				for ( x; x < Zegami.numImgX; x++)
 				{
 					var imgSprite = new PIXI.Sprite(texture);
 					imgSprite.x = (texture.width * x) + 10;
@@ -116,9 +116,9 @@ Zegami.prototype.start = function(img) {
 					imgSprite.interactive = true;
 					
 					// Add images to array and bind mouse click/touch event to sprites.
-					this.spriteArr.push(imgSprite);
-					this.spriteArr[this.spriteArr.length - 1].on('mousedown', onClick);
-					this.spriteArr[this.spriteArr.length - 1].on('touchstart', onClick);
+					Zegami.spriteArr.push(imgSprite);
+					Zegami.spriteArr[Zegami.spriteArr.length - 1].on('mousedown', onClick);
+					Zegami.spriteArr[Zegami.spriteArr.length - 1].on('touchstart', onClick);
 					
 					function onClick()
 					{
@@ -126,7 +126,7 @@ Zegami.prototype.start = function(img) {
 						this.scale.y += 0.3;
 					}
 					
-					this.stage.addChild(imgSprite);
+					Zegami.stage.addChild(imgSprite);
 				}
 			}
 			
