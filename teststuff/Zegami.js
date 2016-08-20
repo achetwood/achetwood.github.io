@@ -105,15 +105,15 @@ Zegami.prototype.start = function(img) {
 		// function populateImages()
 		// {
 			// Set variable ready for loop when adding images.
-			var x = 0;
-			var y = 0;
-			for ( y; y < numImgY; y++ )
+			// var x = 0;
+			// var y = 0;
+			for ( y = 0; y < numImgY; y++ )
 			{
-				for ( x; x < numImgX; x++)
+				for ( x = 0; x < numImgX; x++)
 				{
 					var imgSprite = new PIXI.Sprite(texture);
 					imgSprite.x = (texture.width * x) + 50;
-					imgSprite.y = - ((texture.height * y) + 50);
+					imgSprite.y = (texture.height * y) + 50;
 					
 					imgSprite.interactive = true;
 					
