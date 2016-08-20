@@ -141,7 +141,7 @@ Zegami.prototype.start = function(img) {
 	function animate() {
 		requestAnimationFrame(animate);
 		
-		this.renderer.render(this.stage);
+		Zegami.renderer.render(Zegami.stage);
 	}
 	// // Generate array for sprite to go into.
 	// var spriteArr = [];
