@@ -56,7 +56,7 @@ function Zegami() {
 	// }
 
 	this.animate = function() {
-		requestAnimationFrame(this);
+		requestAnimationFrame(this.animate);
 		
 		this.renderer.render(this.stage);
 	}
