@@ -92,11 +92,13 @@ Zegami.prototype.size = function(numX, numY) {
 	this.numImgY = numY;
 }
 Zegami.prototype.start = function(img) {
-	// Initialise
-	var image = new Image();
-	image.src = img;
-	var texture = PIXI.Texture.fromImage(image);
+	// Initialise	
+	this.imgURL = img;
 	
+	var image = new Image();
+	image.src = img
+	
+	var texture = PIXI.Texture.fromImage(image.src);
 	// // Generate array for sprite to go into.
 	// var spriteArr = [];
 	// var image = new Image();
