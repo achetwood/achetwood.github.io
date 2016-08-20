@@ -55,8 +55,8 @@ function Zegami() {
 		
 	// }
 
-	function animate() {
-		requestAnimationFrame(animate);
+	this.animate = function() {
+		requestAnimationFrame(this);
 		
 		this.renderer.render(this.stage);
 	}
@@ -93,6 +93,8 @@ Zegami.prototype.size = function(numX, numY) {
 }
 Zegami.prototype.start = function(img) {
 	// Initialise	
+	var numImgX = this.numImgX;
+	var numImgY = this.numImgY;
 	
 	var image = new Image();
 	
@@ -105,9 +107,9 @@ Zegami.prototype.start = function(img) {
 			// Set variable ready for loop when adding images.
 			var x = 0;
 			var y = 0;
-			for ( y; y < Zegami.numImgY; y++ )
+			for ( y; y < numImgY; y++ )
 			{
-				for ( x; x < Zegami.numImgX; x++)
+				for ( x; x < numImgX; x++)
 				{
 					var imgSprite = new PIXI.Sprite(texture);
 					imgSprite.x = (texture.width * x) + 10;
@@ -130,6 +132,7 @@ Zegami.prototype.start = function(img) {
 				}
 			}
 			
+			Zegami.animate();
 		// }
 	};
 	
