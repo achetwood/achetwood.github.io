@@ -127,7 +127,7 @@ Zegami.prototype.start = function(img) {
 	{
 		for ( x; x < this.numImgX; x++)
 		{
-			var imgSprite = PIXI.Sprite(texture);
+			var imgSprite = new PIXI.Sprite(texture);
 			imgSprite.x = (texture.width * x) + 10;
 			imgSprite.y = (texture.height * y) + 10;
 			
