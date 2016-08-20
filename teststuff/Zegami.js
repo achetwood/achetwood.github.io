@@ -138,7 +138,7 @@ Zegami.prototype.start = function(img) {
 	
 	image.src = img;
 	
-	function animate {
+	function animate() {
 		requestAnimationFrame(animate);
 		
 		this.renderer.render(this.stage);
