@@ -55,11 +55,11 @@ function Zegami() {
 		
 	// }
 
-	this.animate = function() {
-		requestAnimationFrame(animate);
+	// this.animate = function() {
+		// requestAnimationFrame(animate);
 		
-		this.renderer.render(this.stage);
-	}
+		// this.renderer.render(this.stage);
+	// }
 }
 
 // Zegami.prototype.constructor = Zegami;
@@ -132,11 +132,17 @@ Zegami.prototype.start = function(img) {
 				}
 			}
 			
-			Zegami.animate();
+			animate();
 		// }
 	};
 	
 	image.src = img;
+	
+	function animate {
+		requestAnimationFrame(animate);
+		
+		this.renderer.render(this.stage);
+	}
 	// // Generate array for sprite to go into.
 	// var spriteArr = [];
 	// var image = new Image();
