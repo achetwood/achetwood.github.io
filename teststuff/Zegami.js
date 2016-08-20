@@ -98,7 +98,7 @@ Zegami.prototype.start = function(img) {
 	var image = new Image();
 	image.src = img
 	
-	var texture = PIXI.Texture.fromImage(image.src);
+	var texture = PIXI.Texture.fromImage(img);
 	// // Generate array for sprite to go into.
 	// var spriteArr = [];
 	// var image = new Image();
