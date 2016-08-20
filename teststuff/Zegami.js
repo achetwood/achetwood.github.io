@@ -100,8 +100,8 @@ Zegami.prototype.start = function(img) {
 		var baseTexture = new PIXI.BaseTexture(image)
 		var texture = new PIXI.Texture(baseTexture);
 		
-		function populateImages()
-		{
+		// function populateImages()
+		// {
 			// Set variable ready for loop when adding images.
 			var x = 0;
 			var y = 0;
@@ -130,7 +130,7 @@ Zegami.prototype.start = function(img) {
 				}
 			}
 			
-		}
+		// }
 	};
 	
 	image.src = img;
