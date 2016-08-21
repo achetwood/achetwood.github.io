@@ -156,24 +156,17 @@ function Zegami() {
 							// Add images to array and bind mouse click/touch event to sprites.
 							spriteArr.push(imgSprite);
 							var currLength = spriteArr.length - 1;
-							spriteArr[currLength].on('mousedown', function(currLength + 1){
-									var txtBox = document.getElementById('picSelected');
-									txtBox.innerHTML = "Selected: " + (currLength + 1);
-									
-									//this.scale.x += 0.3;
-									//this.scale.y += 0.3;
-								}
-							);
+							spriteArr[currLength].on('mousedown', onClick);
 							// spriteArr[currLength].on('touchstart', onClick(currLength + 1));
 							
-							// function onClick(imgNum)
-							// {
-								// var txtBox = document.getElementById('picSelected');
-								// txtBox.innerHTML = "Selected: " + imgNum;
+							function onClick(eventData)
+							{
+								var txtBox = document.getElementById('picSelected');
+								txtBox.innerHTML = "Selected: " + imgNum;
 								
-								// //this.scale.x += 0.3;
-								// //this.scale.y += 0.3;
-							// }
+								//this.scale.x += 0.3;
+								//this.scale.y += 0.3;
+							}
 							
 							stage.addChild(imgSprite);
 						}
