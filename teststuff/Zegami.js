@@ -44,10 +44,10 @@ function Zegami() {
 		var zoomSlider = document.createElement('input');
 		zoomSlider.id = "zoomControl";
 		zoomSlider.type = 'range';
-		zoomSlider.min = 5;
-		zoomSlider.max = 300;
+		zoomSlider.min = 0.1;
+		zoomSlider.max = 2;
 		zoomSlider.value = 1;
-		zoomSlider.step = 1;
+		zoomSlider.step = 0.1;
 		zoomSlider.addEventListener('change', this.updateZoom(zoomSlider.value));
 		document.body.appendChild(zoomSlider);
 		
