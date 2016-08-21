@@ -24,7 +24,7 @@ function Zegami() {
 		
 	// }
 	this.updateZoom = function(slider) {
-		var val = parseFloar(slider.value);
+		var val = parseFloat(slider.value);
 		_stage.scale.x = val;
 		_stage.scale.y = val;
 	}
