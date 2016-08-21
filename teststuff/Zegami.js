@@ -146,12 +146,13 @@ function Zegami() {
 						}
 					}
 					
+					animate();
 					// animate();
 				// }
 			};
 			
 			image.src = img;
-			animate();
+			// animate();
 		}
 	// this.size = function(numX, numY) {
 		// _numImgX = numX;
