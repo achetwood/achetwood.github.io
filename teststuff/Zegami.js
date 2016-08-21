@@ -159,7 +159,7 @@ function Zegami() {
 							spriteArr[currLength].on('mousedown', onClick(currLength));
 							// spriteArr[currLength].on('touchstart', onClick(currLength + 1));
 							
-							function onClick(eventData, imgNum)
+							function onClick(imgNum, eventData)
 							{
 								var txtBox = document.getElementById('picSelected');
 								txtBox.innerHTML = "Selected: " + imgNum;
