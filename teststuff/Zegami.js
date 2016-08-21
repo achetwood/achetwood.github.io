@@ -46,7 +46,7 @@ function Zegami() {
 		zoomSlider.max = 300;
 		zoomSlider.value = 1;
 		zoomSlider.step = 1;
-		zoomSlider.onchange = "Zegami.updateZoom(this.value)";
+		zoomSlider.onchange = Zegami.updateZoom(this.value);
 		document.body.appendChild(zoomSlider);
 		
 		// this.start = function(img) {
