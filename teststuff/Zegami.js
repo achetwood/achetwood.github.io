@@ -67,10 +67,11 @@ function Zegami() {
 	}
 	
 	this.start = function(img) {
-		// var numImgX = this.numImgX;
-		// var numImgY = this.numImgY;
+		var numImgX = this.numImgX;
+		var numImgY = this.numImgY;
+		var spriteArr = this.spriteArr;
 		// var renderer = this.renderer;
-		// var stage = this.stage;
+		var stage = this.stage;
 		
 		var image = new Image();
 		
@@ -94,9 +95,9 @@ function Zegami() {
 						imgSprite.interactive = true;
 						
 						// Add images to array and bind mouse click/touch event to sprites.
-						this.spriteArr.push(imgSprite);
-						this.spriteArr[Zegami.spriteArr.length - 1].on('mousedown', onClick);
-						this.spriteArr[Zegami.spriteArr.length - 1].on('touchstart', onClick);
+						spriteArr.push(imgSprite);
+						spriteArr[spriteArr.length - 1].on('mousedown', onClick);
+						spriteArr[spriteArr.length - 1].on('touchstart', onClick);
 						
 						function onClick()
 						{
@@ -104,7 +105,7 @@ function Zegami() {
 							this.scale.y += 0.3;
 						}
 						
-						this.stage.addChild(imgSprite);
+						stage.addChild(imgSprite);
 					}
 				}
 				
