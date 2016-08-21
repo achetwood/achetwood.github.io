@@ -156,7 +156,7 @@ function Zegami() {
 							// Add images to array and bind mouse click/touch event to sprites.
 							spriteArr.push(imgSprite);
 							var currLength = spriteArr.length - 1;
-							spriteArr[currLength].on('mousedown', onClick(eventData, currLength));
+							spriteArr[currLength].on('mousedown', onClick(currLength));
 							// spriteArr[currLength].on('touchstart', onClick(currLength + 1));
 							
 							function onClick(eventData, imgNum)
