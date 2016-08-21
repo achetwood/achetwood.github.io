@@ -2,33 +2,20 @@
 
 function Zegami() {
 	
-	this.stage;
-	this.renderer;
-	this.numImgX = 3;
-	this.numImgY = 3;
-	this.spriteArr = [];
+	// this.stage;
+	// this.renderer;
+	// this.numImgX = 3;
+	// this.numImgY = 3;
+	// this.spriteArr = [];
 	
 	var _stage;
 	var _renderer;
-	var _numImgX = 3;
-	var _numImgY = 3;
+	var _numImgX;
+	var _numImgY;
 	var _spriteArr = [];
-	// function size(numX, numY)
-	// {
-		// numImgX = numX;
-		// numImgY = numY;
-	// }
 	
-	// function zoom()
-	// {
-		
-	// }
-	this.updateZoom = function(slider) {
-		var val = parseFloat(slider.value);
-		_stage.scale.x = val;
-		_stage.scale.y = val;
-	}
-	
+	// Pass in ID of the container element to attach the application to in the DOM.
+	// Initialises the renderer and additional HTML elements and adds them to the page.
 	this.attachTo = function(container) {
 		// Initialise PIXI stage and renderer.
 		// Attach renderer to the intended element.
@@ -40,12 +27,12 @@ function Zegami() {
 		
 		_stage = new PIXI.Container();
 		
-		_stage.x = 10;
-		_stage.y = 10;
-		console.log(_stage.scale.x);
+		_stage.x = 0;
+		_stage.y = 0;
 		
+		// Create a container div to put the zoom control and selected element into.
 		var containerDiv = document.createElement('div');
-		
+		// Create slider for zoom control and add event listener to change the Pixi stage's scale.
 		var zoomSlider = document.createElement('input');
 		zoomSlider.id = "zoomControl";
 		zoomSlider.type = 'range';
@@ -60,72 +47,25 @@ function Zegami() {
 		);
 		containerDiv.appendChild(zoomSlider);
 		
+		// Create the HTMl element to display the number of the currently selected image.
 		var selectedSpan = document.createElement('span');
 		selectedSpan.id = "picSelected";
 		selectedSpan.innerHTML = "Selected: ";
 		
-		// var selectedBox = document.createElement('input');
-		// selectedBox.id = "picSelected";
-		// selectedBox.type = 'text';
-		// selectedBox.readonly = true;
-		
-		// selectedDiv.appendChild(selectedBox);
+		// Attach elemnts to their respective parents.
 		containerDiv.appendChild(selectedSpan);
 		canvas.appendChild(containerDiv);
-		// this.start = function(img) {
-			// var numImgX = _numImgX;
-			// var numImgY = _numImgY;
-			// var renderer = _renderer;
-			// var stage = _stage;
-			// var spriteArr = _spriteArr;
-			
-			// var image = new Image();
-			
-			// image.onload = function() {
-				// var baseTexture = new PIXI.BaseTexture(image)
-				// var texture = new PIXI.Texture(baseTexture);
-				
-				// // function populateImages()
-				// // {
-					// // Set variable ready for loop when adding images.
-					// // var x = 0;
-					// // var y = 0;
-					// for ( y = 0; y < numImgY; y++ )
-					// {
-						// for ( x = 0; x < numImgX; x++)
-						// {
-							// var imgSprite = new PIXI.Sprite(texture);
-							// imgSprite.x = (texture.width * x) + 50;
-							// imgSprite.y = (texture.height * y) + 50;
-							
-							// imgSprite.interactive = true;
-							
-							// // Add images to array and bind mouse click/touch event to sprites.
-							// spriteArr.push(imgSprite);
-							// spriteArr[spriteArr.length - 1].on('mousedown', onClick);
-							// spriteArr[spriteArr.length - 1].on('touchstart', onClick);
-							
-							// function onClick()
-							// {
-								// this.scale.x += 0.3;
-								// this.scale.y += 0.3;
-							// }
-							
-							// stage.addChild(imgSprite);
-						// }
-					// }
-			// };
-			
-			// image.src = img;
-		// }
-
 	}
 	
+	// Function to set size of the image grid.
+	// Passing in how many images required on the X axis and on the Y axis.
 	this.size = function(numX, numY) {
 		_numImgX = numX;
 		_numImgY = numY;
 	}
 	
+	// Start function.
+	// Pass in image url and proceeds to load, render images in a grid and call animate on pixi renderer.
 	this.start = function(img) {
 		
 		// Create function scope copies of the private vars.
@@ -177,6 +117,7 @@ function Zegami() {
 		image.src = img;
 	}
 	
+	// Animate function.
 	function animate() {
 		requestAnimationFrame(animate);
 		
@@ -184,5 +125,6 @@ function Zegami() {
 	}
 }
 
+// Initialise Zegami Object.
 var Zegami = new Zegami();
 
