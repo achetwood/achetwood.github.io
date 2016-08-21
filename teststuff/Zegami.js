@@ -63,7 +63,7 @@ function Zegami() {
 }
 
 // Zegami.prototype.constructor = Zegami;
-Zegami.prototype.attachTo = function(container) {
+Zegami.attachTo = function(container) {
 	// Initialise PIXI stage and renderer.
 	// Attach renderer to the intended element.
 	var canvas = document.getElementById(container);
@@ -85,115 +85,126 @@ Zegami.prototype.attachTo = function(container) {
 	zoomSlider.step = 1;
 	document.body.appendChild(zoomSlider);
 	
+	this.size = function(numX, numY) {
+		this.numImgX = numX;
+		this.numImgY = numY;
+	}
+	
+	this.start = function(img) {
+		var numImgX = this.numImgX;
+		var numImgY = this.numImgY;
+		var renderer = this.renderer;
+		var stage = this.stage;
+		
+		var image = new Image();
+		
+		image.onload = function() {
+			var baseTexture = new PIXI.BaseTexture(image)
+			var texture = new PIXI.Texture(baseTexture);
+			
+			// function populateImages()
+			// {
+				// Set variable ready for loop when adding images.
+				// var x = 0;
+				// var y = 0;
+				for ( y = 0; y < numImgY; y++ )
+				{
+					for ( x = 0; x < numImgX; x++)
+					{
+						var imgSprite = new PIXI.Sprite(texture);
+						imgSprite.x = (texture.width * x) + 50;
+						imgSprite.y = (texture.height * y) + 50;
+						
+						imgSprite.interactive = true;
+						
+						// Add images to array and bind mouse click/touch event to sprites.
+						Zegami.spriteArr.push(imgSprite);
+						Zegami.spriteArr[Zegami.spriteArr.length - 1].on('mousedown', onClick);
+						Zegami.spriteArr[Zegami.spriteArr.length - 1].on('touchstart', onClick);
+						
+						function onClick()
+						{
+							this.scale.x += 0.3;
+							this.scale.y += 0.3;
+						}
+						
+						Zegami.stage.addChild(imgSprite);
+					}
+				}
+				
+				animate();
+			// }
+		};
+		
+		image.src = img;
+		
+		function animate() {
+			requestAnimationFrame(animate);
+			
+			renderer.render(stage);
+		}
+	}
 	// var selectedImg = document.createElement();
 }
-Zegami.prototype.size = function(numX, numY) {
-	this.numImgX = numX;
-	this.numImgY = numY;
-}
-Zegami.prototype.start = function(img) {
-	// Initialise	
-	var numImgX = this.numImgX;
-	var numImgY = this.numImgY;
+// Zegami.prototype.size = function(numX, numY) {
+	// this.numImgX = numX;
+	// this.numImgY = numY;
+// }
+// Zegami.prototype.start = function(img) {
+	// // Initialise	
+	// var numImgX = this.numImgX;
+	// var numImgY = this.numImgY;
+	// var renderer = this.renderer;
+	// var stage = this.stage;
 	
-	var image = new Image();
-	
-	image.onload = function() {
-		var baseTexture = new PIXI.BaseTexture(image)
-		var texture = new PIXI.Texture(baseTexture);
-		
-		// function populateImages()
-		// {
-			// Set variable ready for loop when adding images.
-			// var x = 0;
-			// var y = 0;
-			for ( y = 0; y < numImgY; y++ )
-			{
-				for ( x = 0; x < numImgX; x++)
-				{
-					var imgSprite = new PIXI.Sprite(texture);
-					imgSprite.x = (texture.width * x) + 50;
-					imgSprite.y = (texture.height * y) + 50;
-					
-					imgSprite.interactive = true;
-					
-					// Add images to array and bind mouse click/touch event to sprites.
-					Zegami.spriteArr.push(imgSprite);
-					Zegami.spriteArr[Zegami.spriteArr.length - 1].on('mousedown', onClick);
-					Zegami.spriteArr[Zegami.spriteArr.length - 1].on('touchstart', onClick);
-					
-					function onClick()
-					{
-						this.scale.x += 0.3;
-						this.scale.y += 0.3;
-					}
-					
-					Zegami.stage.addChild(imgSprite);
-				}
-			}
-			
-			animate();
-		// }
-	};
-	
-	image.src = img;
-	
-	function animate() {
-		requestAnimationFrame(animate);
-		
-		Zegami.renderer.render(Zegami.stage);
-	}
-	// // Generate array for sprite to go into.
-	// var spriteArr = [];
 	// var image = new Image();
-	// image.src = img;
-	// var images = {};
-	// var loadedImages = 0;
-	// var numImages = 0;
-	// // get num of sources
-	// for(var src0 in img) {
-		// numImages++;
-	// }
-	// for(var src in img) {
-		// images[src] = new Image();
-		// images[src].onload = function() {
-			// if(++loadedImages >= numImages) {
-				// callback(images);
-			// }
-		// };
-		// images[src].src = img[src];
-	// }
 	
-	// Set variable ready for loop when adding images.
-	// var x = 0;
-	// var y = 0;
-	// for ( y; y < this.numImgY; y++ )
-	// {
-		// for ( x; x < this.numImgX; x++)
-		// {
-			// var imgSprite = new PIXI.Sprite(texture);
-			// imgSprite.x = (texture.width * x) + 10;
-			// imgSprite.y = (texture.height * y) + 10;
-			
-			// imgSprite.interactive = true;
-			
-			// // Add images to array and bind mouse click/touch event to sprites.
-			// this.spriteArr.push(imgSprite);
-			// this.spriteArr[this.spriteArr.length - 1].on('mousedown', onClick);
-			// this.spriteArr[this.spriteArr.length - 1].on('touchstart', onClick);
-			
-			// function onClick()
+	// image.onload = function() {
+		// var baseTexture = new PIXI.BaseTexture(image)
+		// var texture = new PIXI.Texture(baseTexture);
+		
+		// // function populateImages()
+		// // {
+			// // Set variable ready for loop when adding images.
+			// // var x = 0;
+			// // var y = 0;
+			// for ( y = 0; y < numImgY; y++ )
 			// {
-				// this.scale.x += 0.3;
-				// this.scale.y += 0.3;
+				// for ( x = 0; x < numImgX; x++)
+				// {
+					// var imgSprite = new PIXI.Sprite(texture);
+					// imgSprite.x = (texture.width * x) + 50;
+					// imgSprite.y = (texture.height * y) + 50;
+					
+					// imgSprite.interactive = true;
+					
+					// // Add images to array and bind mouse click/touch event to sprites.
+					// Zegami.spriteArr.push(imgSprite);
+					// Zegami.spriteArr[Zegami.spriteArr.length - 1].on('mousedown', onClick);
+					// Zegami.spriteArr[Zegami.spriteArr.length - 1].on('touchstart', onClick);
+					
+					// function onClick()
+					// {
+						// this.scale.x += 0.3;
+						// this.scale.y += 0.3;
+					// }
+					
+					// Zegami.stage.addChild(imgSprite);
+				// }
 			// }
 			
-			// this.stage.addChild(imgSprite);
-		// }
-	// }
+			// animate();
+		// // }
+	// };
 	
-	// animate();
-}
+	// image.src = img;
+	
+	// function animate() {
+		// requestAnimationFrame(animate);
+		
+		// renderer.render(stage);
+	// }
+// }
 
 //Function to pre-load images from Konva docs
 function loadImages(sources, callback) {
