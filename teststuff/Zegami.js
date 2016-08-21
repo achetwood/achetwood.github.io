@@ -83,9 +83,9 @@ function Zegami() {
 				// Set variable ready for loop when adding images.
 				// var x = 0;
 				// var y = 0;
-				for ( y = 0; y < numImgY; y++ )
+				for ( y = 0; y < this.numImgY; y++ )
 				{
-					for ( x = 0; x < numImgX; x++)
+					for ( x = 0; x < this.numImgX; x++)
 					{
 						var imgSprite = new PIXI.Sprite(texture);
 						imgSprite.x = (texture.width * x) + 50;
@@ -114,11 +114,17 @@ function Zegami() {
 		
 		image.src = img;
 		
-		function animate() {
-			requestAnimationFrame(animate);
+		// function animate() {
+			// requestAnimationFrame(animate);
 			
-			renderer.render(stage);
-		}
+			// renderer.render(stage);
+		// }
+	}
+	
+	function animate() {
+		requestAnimationFrame(animate);
+		
+		this.renderer.render(this.stage);
 	}
 }
 
