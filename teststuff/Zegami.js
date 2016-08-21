@@ -28,7 +28,7 @@ function Zegami() {
 		var canvas = document.getElementById(container);
 		
 		_renderer = PIXI.autoDetectRenderer(800, 800,{backgroundColor : 0xFFFFFF});
-		canvas.appendChild(this.renderer.view);
+		canvas.appendChild(_renderer.view);
 		
 		_stage = new PIXI.Container();
 		
