@@ -21,7 +21,7 @@ function Zegami() {
 		// Attach renderer to the intended element.
 		var canvas = document.getElementById(container);
 		var wWidth = window.innerWidth;
-		var wHeight = 900; 
+		var wHeight = 850; 
 		_renderer = PIXI.autoDetectRenderer(wWidth, wHeight, {backgroundColor : 0xFFFFFF});
 		canvas.appendChild(_renderer.view);
 		
