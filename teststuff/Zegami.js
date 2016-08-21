@@ -161,7 +161,7 @@ function Zegami() {
 							
 							function onClick()
 							{
-								//var imgNum = currLength + 1;
+								var imgNum = this + 1;
 								var txtBox = document.getElementById('picSelected');
 								txtBox.innerHTML = "Selected: " + imgNum;
 								
