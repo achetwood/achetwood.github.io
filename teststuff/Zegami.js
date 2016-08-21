@@ -49,7 +49,7 @@ function Zegami() {
 			_numImgY = numY;
 		}
 		
-		start = function(img) {
+		this.attachTo().start = function(img) {
 			var numImgX = _numImgX;
 			var numImgY = _numImgY;
 			var renderer = _renderer;
