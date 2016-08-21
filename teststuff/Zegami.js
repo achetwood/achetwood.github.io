@@ -48,7 +48,7 @@ function Zegami() {
 		zoomSlider.max = 2;
 		zoomSlider.value = 1;
 		zoomSlider.step = 0.1;
-		zoomSlider.addEventListener('change', this.updateZoom(zoomSlider.value));
+		zoomSlider.addEventListener('change', updateZoom(zoomSlider.value));
 		document.body.appendChild(zoomSlider);
 		
 		// this.start = function(img) {
