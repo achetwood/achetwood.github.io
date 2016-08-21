@@ -22,104 +22,145 @@ function Zegami() {
 		
 	// }
 	
-	// function start(img)
-	// {
-		// // Initialise
-		// var texture = PIXI.Texture.fromImage(img);
+	this.attachTo = function(container) {
+		// Initialise PIXI stage and renderer.
+		// Attach renderer to the intended element.
+		var canvas = document.getElementById(container);
 		
-		// // Generate array for sprite to go into.
-		// var spriteArr = [];
+		_renderer = PIXI.autoDetectRenderer(800, 800,{backgroundColor : 0xFFFFFF});
+		canvas.appendChild(this.renderer.view);
 		
-		// // Set variable ready for loop when adding images.
-		// var x = 0;
-		// var y = 0;
-		// for ( y; y < numImgY; y++ )
-		// {
-			// for ( x; x < numImgX; x++)
-			// {
-				// var imgSprite = PIXI.Sprite(texture);
-				// imgSprite.x = (imgSprite.width * x) + 10;
-				// imgSprite.y = (imgSprite.height * y) + 10;
+		_stage = new PIXI.Container();
+		
+		_stage.x = 60;
+		_stage.y = 60;
+		
+		var zoomSlider = document.createElement('input');
+		zoomSlider.id = "zoomControl";
+		zoomSlider.type = 'range';
+		zoomSlider.min = 5;
+		zoomSlider.max = 300;
+		zoomSlider.value = 1;
+		zoomSlider.step = 1;
+		document.body.appendChild(zoomSlider);
+		
+		this.size = function(numX, numY) {
+			_numImgX = numX;
+			_numImgY = numY;
+		}
+		
+		this.start = function(img) {
+			var numImgX = _numImgX;
+			var numImgY = _numImgY;
+			var renderer = _renderer;
+			var stage = _stage;
+			var spriteArr = _spriteArr;
+			
+			var image = new Image();
+			
+			image.onload = function() {
+				var baseTexture = new PIXI.BaseTexture(image)
+				var texture = new PIXI.Texture(baseTexture);
 				
-				// imgSprite.interactive = true;
-				
-				// // Add images to array and bind mouse click/touch event to sprites.
-				// spriteArr.push(imgSprite);
-				// spriteArr[spriteArr.length - 1].on('mousedown', onClick);
-				// spriteArr[spriteArr.length - 1].on('touchstart', onClick);
-				
-				// function onClick()
+				// function populateImages()
 				// {
-					// this.scale.x += 0.3;
-					// this.scale.y += 0.3;
+					// Set variable ready for loop when adding images.
+					// var x = 0;
+					// var y = 0;
+					for ( y = 0; y < numImgY; y++ )
+					{
+						for ( x = 0; x < numImgX; x++)
+						{
+							var imgSprite = new PIXI.Sprite(texture);
+							imgSprite.x = (texture.width * x) + 50;
+							imgSprite.y = (texture.height * y) + 50;
+							
+							imgSprite.interactive = true;
+							
+							// Add images to array and bind mouse click/touch event to sprites.
+							spriteArr.push(imgSprite);
+							spriteArr[spriteArr.length - 1].on('mousedown', onClick);
+							spriteArr[spriteArr.length - 1].on('touchstart', onClick);
+							
+							function onClick()
+							{
+								this.scale.x += 0.3;
+								this.scale.y += 0.3;
+							}
+							
+							stage.addChild(imgSprite);
+						}
+					}
+					
+					// animate();
 				// }
+			};
+			
+			image.src = img;
+			// function animate() {
+				// requestAnimationFrame(animate);
 				
-				// stage.addChild(imgSprite);
+				// renderer.render(stage);
 			// }
 		// }
-		
-	// }
-
-	// this.animate = function() {
-		// requestAnimationFrame(animate);
-		
-		// this.renderer.render(this.stage);
-	// }
-	
-	this.size = function(numX, numY) {
-		_numImgX = numX;
-		_numImgY = numY;
-	}
-	
-	this.start = function(img) {
-		var numImgX = _numImgX;
-		var numImgY = _numImgY;
-		var spriteArr = _spriteArr;
-		// var renderer = this.renderer;
-		var stage = _stage;
-		
-		var image = new Image();
-		
-		image.onload = function() {
-			var baseTexture = new PIXI.BaseTexture(image)
-			var texture = new PIXI.Texture(baseTexture);
-			
-			// function populateImages()
-			// {
-				// Set variable ready for loop when adding images.
-				// var x = 0;
-				// var y = 0;
-				for ( y = 0; y < numImgY; y++ )
-				{
-					for ( x = 0; x < numImgX; x++)
-					{
-						var imgSprite = new PIXI.Sprite(texture);
-						imgSprite.x = (texture.width * x) + 50;
-						imgSprite.y = (texture.height * y) + 50;
-						
-						imgSprite.interactive = true;
-						
-						// Add images to array and bind mouse click/touch event to sprites.
-						spriteArr.push(imgSprite);
-						spriteArr[spriteArr.length - 1].on('mousedown', onClick);
-						spriteArr[spriteArr.length - 1].on('touchstart', onClick);
-						
-						function onClick()
-						{
-							this.scale.x += 0.3;
-							this.scale.y += 0.3;
-						}
-						
-						stage.addChild(imgSprite);
-					}
-				}
-				
-			// }
-		};
-		
-		image.src = img;
+		// var selectedImg = document.createElement();
+		}
 		animate();
 	}
+	// this.size = function(numX, numY) {
+		// _numImgX = numX;
+		// _numImgY = numY;
+	// }
+	
+	// this.start = function(img) {
+		// var numImgX = _numImgX;
+		// var numImgY = _numImgY;
+		// var spriteArr = _spriteArr;
+		// // var renderer = this.renderer;
+		// var stage = _stage;
+		
+		// var image = new Image();
+		
+		// image.onload = function() {
+			// var baseTexture = new PIXI.BaseTexture(image)
+			// var texture = new PIXI.Texture(baseTexture);
+			
+			// // function populateImages()
+			// // {
+				// // Set variable ready for loop when adding images.
+				// // var x = 0;
+				// // var y = 0;
+				// for ( y = 0; y < numImgY; y++ )
+				// {
+					// for ( x = 0; x < numImgX; x++)
+					// {
+						// var imgSprite = new PIXI.Sprite(texture);
+						// imgSprite.x = (texture.width * x) + 50;
+						// imgSprite.y = (texture.height * y) + 50;
+						
+						// imgSprite.interactive = true;
+						
+						// // Add images to array and bind mouse click/touch event to sprites.
+						// spriteArr.push(imgSprite);
+						// spriteArr[spriteArr.length - 1].on('mousedown', onClick);
+						// spriteArr[spriteArr.length - 1].on('touchstart', onClick);
+						
+						// function onClick()
+						// {
+							// this.scale.x += 0.3;
+							// this.scale.y += 0.3;
+						// }
+						
+						// stage.addChild(imgSprite);
+					// }
+				// }
+				
+			// // }
+		// };
+		
+		// image.src = img;
+		// animate();
+	// }
 	
 	function animate() {
 		requestAnimationFrame(animate);
