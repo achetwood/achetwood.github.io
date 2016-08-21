@@ -23,7 +23,8 @@ function Zegami() {
 	// {
 		
 	// }
-	this.updateZoom = function(val) {
+	this.updateZoom = function(slider) {
+		var val = parseFloar(slider.value);
 		_stage.scale.x = val;
 		_stage.scale.y = val;
 	}
@@ -48,7 +49,7 @@ function Zegami() {
 		zoomSlider.max = 2;
 		zoomSlider.value = 1;
 		zoomSlider.step = 0.1;
-		zoomSlider.addEventListener('change', Zegami.updateZoom(this.value));
+		zoomSlider.addEventListener('change', Zegami.updateZoom(zoomSlider));
 		document.body.appendChild(zoomSlider);
 		
 		// this.start = function(img) {
