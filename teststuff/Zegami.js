@@ -33,9 +33,9 @@ function Zegami() {
 		// Initialise PIXI stage and renderer.
 		// Attach renderer to the intended element.
 		var canvas = document.getElementById(container);
-		var wWidth = document.body.clientWidth;
-		var wHeight = document.body.clientHeight;
-		_renderer = PIXI.autoDetectRenderer(wWidth, wHeight);
+		var wWidth = window.outerWidth; // document.body.clientWidth;
+		var wHeight = window.outerHeight; // document.body.clientHeight;
+		_renderer = PIXI.autoDetectRenderer(wWidth, wHeight, {backgroundColor : 0xFFFFFF});
 		canvas.appendChild(_renderer.view);
 		
 		_stage = new PIXI.Container();
