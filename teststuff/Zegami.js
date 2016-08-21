@@ -1,3 +1,5 @@
+
+
 function Zegami() {
 	
 	this.stage;
@@ -46,7 +48,7 @@ function Zegami() {
 		zoomSlider.max = 300;
 		zoomSlider.value = 1;
 		zoomSlider.step = 1;
-		// zoomSlider.addEventListener("change", Zegami.updateZoom(this.value));
+		zoomSlider.addEventListener('change', Zegami.updateZoom(zoomSlider.value));
 		document.body.appendChild(zoomSlider);
 		
 		// this.start = function(img) {
