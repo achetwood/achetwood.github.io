@@ -44,12 +44,61 @@ function Zegami() {
 		zoomSlider.step = 1;
 		document.body.appendChild(zoomSlider);
 		
-		size = function(numX, numY) {
-			_numImgX = numX;
-			_numImgY = numY;
-		}
-		
-		this.attachTo().start = function(img) {
+		// this.start = function(img) {
+			// var numImgX = _numImgX;
+			// var numImgY = _numImgY;
+			// var renderer = _renderer;
+			// var stage = _stage;
+			// var spriteArr = _spriteArr;
+			
+			// var image = new Image();
+			
+			// image.onload = function() {
+				// var baseTexture = new PIXI.BaseTexture(image)
+				// var texture = new PIXI.Texture(baseTexture);
+				
+				// // function populateImages()
+				// // {
+					// // Set variable ready for loop when adding images.
+					// // var x = 0;
+					// // var y = 0;
+					// for ( y = 0; y < numImgY; y++ )
+					// {
+						// for ( x = 0; x < numImgX; x++)
+						// {
+							// var imgSprite = new PIXI.Sprite(texture);
+							// imgSprite.x = (texture.width * x) + 50;
+							// imgSprite.y = (texture.height * y) + 50;
+							
+							// imgSprite.interactive = true;
+							
+							// // Add images to array and bind mouse click/touch event to sprites.
+							// spriteArr.push(imgSprite);
+							// spriteArr[spriteArr.length - 1].on('mousedown', onClick);
+							// spriteArr[spriteArr.length - 1].on('touchstart', onClick);
+							
+							// function onClick()
+							// {
+								// this.scale.x += 0.3;
+								// this.scale.y += 0.3;
+							// }
+							
+							// stage.addChild(imgSprite);
+						// }
+					// }
+			// };
+			
+			// image.src = img;
+		// }
+
+	}
+	
+	this.size = function(numX, numY) {
+		_numImgX = numX;
+		_numImgY = numY;
+	}
+	
+	this.start = function(img) {
 			var numImgX = _numImgX;
 			var numImgY = _numImgY;
 			var renderer = _renderer;
@@ -97,16 +146,8 @@ function Zegami() {
 			};
 			
 			image.src = img;
-			// function animate() {
-				// requestAnimationFrame(animate);
-				
-				// renderer.render(stage);
-			// }
-		// }
-		// var selectedImg = document.createElement();
+			animate();
 		}
-		animate();
-	}
 	// this.size = function(numX, numY) {
 		// _numImgX = numX;
 		// _numImgY = numY;
