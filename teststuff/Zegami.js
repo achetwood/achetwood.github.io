@@ -121,8 +121,8 @@ function Zegami() {
 						for ( x = 0; x < numImgX; x++)
 						{
 							var imgSprite = new PIXI.Sprite(texture);
-							imgSprite.x = (texture.width * x) + 50;
-							imgSprite.y = (texture.height * y) + 50;
+							imgSprite.x = (texture.width + 20) * x;
+							imgSprite.y = (texture.height + 20) * y;
 							
 							imgSprite.interactive = true;
 							
