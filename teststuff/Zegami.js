@@ -60,7 +60,7 @@ function Zegami() {
 		);
 		containerDiv.appendChild(zoomSlider);
 		
-		var selectedDiv = document.createElement('span');
+		var selectedSpan = document.createElement('span');
 		selectedSpan.id = "picSelected";
 		selectedSpan.innerHTML = "Selected: ";
 		
