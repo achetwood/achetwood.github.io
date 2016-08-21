@@ -50,7 +50,7 @@ function Zegami() {
 		zoomSlider.value = 1;
 		zoomSlider.step = 0.1;
 		zoomSlider.addEventListener('change', function(){
-			var val = parseFloat(slider.value);
+			var val = parseFloat(this.value);
 			_stage.scale.x = val;
 			_stage.scale.y = val;}
 		);
