@@ -49,7 +49,11 @@ function Zegami() {
 		zoomSlider.max = 2;
 		zoomSlider.value = 1;
 		zoomSlider.step = 0.1;
-		zoomSlider.addEventListener('change', Zegami.updateZoom(zoomSlider));
+		zoomSlider.addEventListener('change', function(){
+			var val = parseFloat(slider.value);
+			_stage.scale.x = val;
+			_stage.scale.y = val;}
+		);
 		document.body.appendChild(zoomSlider);
 		
 		// this.start = function(img) {
