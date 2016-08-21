@@ -6,6 +6,11 @@ function Zegami() {
 	this.numImgY = 3;
 	this.spriteArr = [];
 	
+	var _stage;
+	var _renderer;
+	var _numImgX = 3;
+	var _numImgY = 3;
+	var _spriteArr = [];
 	// function size(numX, numY)
 	// {
 		// numImgX = numX;
@@ -62,16 +67,16 @@ function Zegami() {
 	// }
 	
 	this.size = function(numX, numY) {
-		this.numImgX = numX;
-		this.numImgY = numY;
+		_numImgX = numX;
+		_numImgY = numY;
 	}
 	
 	this.start = function(img) {
-		var numImgX = this.numImgX;
-		var numImgY = this.numImgY;
-		var spriteArr = this.spriteArr;
+		var numImgX = _numImgX;
+		var numImgY = _numImgY;
+		var spriteArr = _spriteArr;
 		// var renderer = this.renderer;
-		var stage = this.stage;
+		var stage = _stage;
 		
 		var image = new Image();
 		
@@ -109,23 +114,17 @@ function Zegami() {
 					}
 				}
 				
-				animate();
 			// }
 		};
 		
 		image.src = img;
-		
-		// function animate() {
-			// requestAnimationFrame(animate);
-			
-			// renderer.render(stage);
-		// }
+		animate();
 	}
 	
 	function animate() {
 		requestAnimationFrame(animate);
 		
-		this.renderer.render(this.stage);
+		_renderer.render(_stage);
 	}
 }
 
@@ -135,7 +134,7 @@ Zegami.prototype.attachTo = function(container) {
 	// Attach renderer to the intended element.
 	var canvas = document.getElementById(container);
 	
-	this.renderer = PIXI.autoDetectRenderer(800, 800);
+	this.renderer = PIXI.autoDetectRenderer(800, 800,{backgroundColor : 0xFFFFFF});
 	canvas.appendChild(this.renderer.view);
 	
 	this.stage = new PIXI.Container();
