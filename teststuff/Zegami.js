@@ -43,6 +43,8 @@ function Zegami() {
 		_stage.x = 60;
 		_stage.y = 60;
 		console.log(_stage.scale.x);
+		
+		// var containerDiv = document.createElement('div');
 		var zoomSlider = document.createElement('input');
 		zoomSlider.id = "zoomControl";
 		zoomSlider.type = 'range';
@@ -58,14 +60,15 @@ function Zegami() {
 		document.body.appendChild(zoomSlider);
 		
 		var selectedDiv = document.createElement('div');
+		selectedDiv.id = "picSelected";
 		selectedDiv.innerHTML = "Selected: ";
 		
-		var selectedBox = document.createElement('input');
-		selectedBox.id = "picSelected";
-		selectedBox.type = 'text';
-		selectedBox.readonly = true;
+		// var selectedBox = document.createElement('input');
+		// selectedBox.id = "picSelected";
+		// selectedBox.type = 'text';
+		// selectedBox.readonly = true;
 		
-		selectedDiv.appendChild(selectedBox);
+		// selectedDiv.appendChild(selectedBox);
 		document.body.appendChild(selectedDiv);
 		
 		// this.start = function(img) {
@@ -159,7 +162,7 @@ function Zegami() {
 							function onClick(imgNum)
 							{
 								var txtBox = document.getElementById('picSelected');
-								txtBox.innerHTML = imgNum;
+								txtBox.innerHTML = "Selected: " + imgNum;
 								
 								//this.scale.x += 0.3;
 								//this.scale.y += 0.3;
