@@ -71,7 +71,7 @@ function Zegami() {
 		
 		// selectedDiv.appendChild(selectedBox);
 		containerDiv.appendChild(selectedSpan);
-		document.body.appendChild(containerDiv);
+		canvas.appendChild(containerDiv);
 		// this.start = function(img) {
 			// var numImgX = _numImgX;
 			// var numImgY = _numImgY;
