@@ -63,7 +63,7 @@ function Zegami() {
 }
 
 // Zegami.prototype.constructor = Zegami;
-Zegami.attachTo = function(container) {
+Zegami.prototype.attachTo = function(container) {
 	// Initialise PIXI stage and renderer.
 	// Attach renderer to the intended element.
 	var canvas = document.getElementById(container);
