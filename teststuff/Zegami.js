@@ -44,12 +44,12 @@ function Zegami() {
 		zoomSlider.step = 1;
 		document.body.appendChild(zoomSlider);
 		
-		this.size = function(numX, numY) {
+		size = function(numX, numY) {
 			_numImgX = numX;
 			_numImgY = numY;
 		}
 		
-		this.start = function(img) {
+		start = function(img) {
 			var numImgX = _numImgX;
 			var numImgY = _numImgY;
 			var renderer = _renderer;
