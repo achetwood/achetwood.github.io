@@ -33,8 +33,8 @@ function Zegami() {
 		// Initialise PIXI stage and renderer.
 		// Attach renderer to the intended element.
 		var canvas = document.getElementById(container);
-		var wWidth = window.outerWidth; // document.body.clientWidth;
-		var wHeight = window.outerHeight; // document.body.clientHeight;
+		var wWidth = window.innerWidth; // document.body.clientWidth;
+		var wHeight = window.innerHeight; // document.body.clientHeight;
 		_renderer = PIXI.autoDetectRenderer(wWidth, wHeight, {backgroundColor : 0xFFFFFF});
 		canvas.appendChild(_renderer.view);
 		
@@ -56,6 +56,17 @@ function Zegami() {
 			_stage.scale.y = val;}
 		);
 		document.body.appendChild(zoomSlider);
+		
+		var selectedDiv = document.createElement('div');
+		selectedDiv.innerHTML = "Selected: ";
+		
+		var selectedBox = document.createElement('input');
+		selectedBox.id = "picSelected";
+		selectedBox.type = 'text';
+		selectedBox.readonly = true;
+		
+		selectedDiv.appendChild(selectedBox);
+		document.body.appendChild(selectedDiv);
 		
 		// this.start = function(img) {
 			// var numImgX = _numImgX;
@@ -141,13 +152,17 @@ function Zegami() {
 							
 							// Add images to array and bind mouse click/touch event to sprites.
 							spriteArr.push(imgSprite);
-							spriteArr[spriteArr.length - 1].on('mousedown', onClick);
-							spriteArr[spriteArr.length - 1].on('touchstart', onClick);
+							var currLength = spriteArr.length - 1;
+							spriteArr[currLength].on('mousedown', onClick(currLength));
+							spriteArr[currLength].on('touchstart', onClick(currLength));
 							
-							function onClick()
+							function onClick(imgNum)
 							{
-								this.scale.x += 0.3;
-								this.scale.y += 0.3;
+								var txtBox = document.getElementById('picSelected');
+								txtBox.innerHTML = imgNum;
+								
+								//this.scale.x += 0.3;
+								//this.scale.y += 0.3;
 							}
 							
 							stage.addChild(imgSprite);
