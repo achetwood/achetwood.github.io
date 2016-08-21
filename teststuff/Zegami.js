@@ -40,7 +40,7 @@ function Zegami() {
 		
 		_stage.x = 60;
 		_stage.y = 60;
-		
+		console.log(_stage.scale.x);
 		var zoomSlider = document.createElement('input');
 		zoomSlider.id = "zoomControl";
 		zoomSlider.type = 'range';
