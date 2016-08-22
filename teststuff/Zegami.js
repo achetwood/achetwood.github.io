@@ -42,9 +42,10 @@ function Zegami() {
 		zoomSlider.value = 1;
 		zoomSlider.step = 0.1;
 		zoomSlider.addEventListener('change', function(){
-			var val = parseFloat(this.value);
-			_stage.scale.x = val;
-			_stage.scale.y = val;}
+				var val = parseFloat(this.value);
+				_stage.scale.x = val;
+				_stage.scale.y = val;
+			}
 		);
 		containerDiv.appendChild(zoomSlider);
 		
@@ -133,5 +134,5 @@ function Zegami() {
 }
 
 // Initialise Zegami Object.
-var Zegami = new Zegami();
+// var Zegami = new Zegami();
 
