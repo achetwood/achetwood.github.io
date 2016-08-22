@@ -8,8 +8,8 @@ var Zegami = function() {
 	this.numImgY;
 	this.spriteArr = [];
 	
-	// var _stage;
-	// var _renderer;
+	var _stage;
+	var _renderer;
 	// var _numImgX;
 	// var _numImgY;
 	// var _spriteArr = [];
@@ -19,8 +19,8 @@ var Zegami = function() {
 	this.start = function(img) {
 		
 		// Create function scope copies of the private vars.
-		_numImgX = this.numImgX;
-		_numImgY = this.numImgY;
+		var _numImgX = this.numImgX;
+		var _numImgY = this.numImgY;
 		_renderer = this.renderer;
 		_stage = this.stage;
 		
@@ -72,7 +72,7 @@ var Zegami = function() {
 	function animate() {
 		requestAnimationFrame(animate);
 		
-		this.renderer.render(this.stage);
+		_renderer.render(_stage);
 	}
 }
 
