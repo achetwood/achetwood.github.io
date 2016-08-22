@@ -133,6 +133,7 @@ function Zegami() {
 	}
 }
 
+Zegami.prototype = Zegami();
 // Initialise Zegami Object.
 var Zegami = new Zegami();
 
