@@ -16,61 +16,61 @@ var Zegami = function() {
 	
 	// Pass in ID of the container element to attach the application to in the DOM.
 	// Initialises the renderer and additional HTML elements and adds them to the page.
-	this.attachTo = function(container) {
-		// Initialise PIXI stage and renderer.
-		// Attach renderer to the intended element.
-		var canvas = document.getElementById(container);
-		var wWidth = window.innerWidth;
-		var wHeight = 850; 
+	// this.attachTo = function(container) {
+		// // Initialise PIXI stage and renderer.
+		// // Attach renderer to the intended element.
+		// var canvas = document.getElementById(container);
+		// var wWidth = window.innerWidth;
+		// var wHeight = 850; 
 		
-		this.renderer = PIXI.autoDetectRenderer(wWidth, wHeight, {backgroundColor : 0xFFFFFF});
-		canvas.appendChild(this.renderer.view);
+		// this.renderer = PIXI.autoDetectRenderer(wWidth, wHeight, {backgroundColor : 0xFFFFFF});
+		// canvas.appendChild(this.renderer.view);
 		
-		this.stage = new PIXI.Container();
-		this.stage.x = 0;
-		this.stage.y = 0;
+		// this.stage = new PIXI.Container();
+		// this.stage.x = 0;
+		// this.stage.y = 0;
 		
-		_renderer = this.renderer;
-		_stage = this.stage;
+		// _renderer = this.renderer;
+		// _stage = this.stage;
 		
-		// Create a container div to put the zoom control and selected element into.
-		var containerDiv = document.createElement('div');
-		// Create slider for zoom control and add event listener to change the Pixi stage's scale.
-		var zoomSlider = document.createElement('input');
-		zoomSlider.id = "zoomControl";
-		zoomSlider.type = 'range';
-		zoomSlider.min = 0.1;
-		zoomSlider.max = 2;
-		zoomSlider.value = 1;
-		zoomSlider.step = 0.1;
-		zoomSlider.addEventListener('change', function(){
-				var val = parseFloat(this.value);
-				_stage.scale.x = val;
-				_stage.scale.y = val;
-			}
-		);
-		containerDiv.appendChild(zoomSlider);
+		// // Create a container div to put the zoom control and selected element into.
+		// var containerDiv = document.createElement('div');
+		// // Create slider for zoom control and add event listener to change the Pixi stage's scale.
+		// var zoomSlider = document.createElement('input');
+		// zoomSlider.id = "zoomControl";
+		// zoomSlider.type = 'range';
+		// zoomSlider.min = 0.1;
+		// zoomSlider.max = 2;
+		// zoomSlider.value = 1;
+		// zoomSlider.step = 0.1;
+		// zoomSlider.addEventListener('change', function(){
+				// var val = parseFloat(this.value);
+				// _stage.scale.x = val;
+				// _stage.scale.y = val;
+			// }
+		// );
+		// containerDiv.appendChild(zoomSlider);
 		
-		// Create the HTMl element to display the number of the currently selected image.
-		var selectedSpan = document.createElement('span');
-		selectedSpan.id = "picSelected";
-		selectedSpan.innerHTML = "Selected: ";
+		// // Create the HTMl element to display the number of the currently selected image.
+		// var selectedSpan = document.createElement('span');
+		// selectedSpan.id = "picSelected";
+		// selectedSpan.innerHTML = "Selected: ";
 		
-		// Attach elemnts to their respective parents.
-		containerDiv.appendChild(selectedSpan);
-		canvas.appendChild(containerDiv);
+		// // Attach elemnts to their respective parents.
+		// containerDiv.appendChild(selectedSpan);
+		// canvas.appendChild(containerDiv);
 		
-		return this;
-	}
+		// return this;
+	// }
 	
-	// Function to set size of the image grid.
-	// Passing in how many images required on the X axis and on the Y axis.
-	this.size = function(numX, numY) {
-		this.numImgX = numX;
-		this.numImgY = numY;
+	// // Function to set size of the image grid.
+	// // Passing in how many images required on the X axis and on the Y axis.
+	// this.size = function(numX, numY) {
+		// this.numImgX = numX;
+		// this.numImgY = numY;
 		
-		return this;
-	}
+		// return this;
+	// }
 	
 	// Start function.
 	// Pass in image url and proceeds to load, render images in a grid and call animate on pixi renderer.
@@ -79,8 +79,8 @@ var Zegami = function() {
 		// Create function scope copies of the private vars.
 		_numImgX = this.numImgX;
 		_numImgY = this.numImgY;
-		// var renderer = _renderer;
-		// var stage = _stage;
+		_renderer = this.renderer;
+		_stage = this.stage;
 		
 		var spriteArr = _spriteArr;
 		
@@ -133,6 +133,57 @@ var Zegami = function() {
 		
 		_renderer.render(_stage);
 	}
+}
+
+Zegami.prototype.attachTo = function(container) {
+	// Initialise PIXI stage and renderer.
+	// Attach renderer to the intended element.
+	var canvas = document.getElementById(container);
+	var wWidth = window.innerWidth;
+	var wHeight = 850; 
+	
+	this.renderer = PIXI.autoDetectRenderer(wWidth, wHeight, {backgroundColor : 0xFFFFFF});
+	canvas.appendChild(this.renderer.view);
+	
+	this.stage = new PIXI.Container();
+	this.stage.x = 0;
+	this.stage.y = 0;
+	
+	// Create a container div to put the zoom control and selected element into.
+	var containerDiv = document.createElement('div');
+	// Create slider for zoom control and add event listener to change the Pixi stage's scale.
+	var zoomSlider = document.createElement('input');
+	zoomSlider.id = "zoomControl";
+	zoomSlider.type = 'range';
+	zoomSlider.min = 0.1;
+	zoomSlider.max = 2;
+	zoomSlider.value = 1;
+	zoomSlider.step = 0.1;
+	zoomSlider.addEventListener('change', function(){
+			var val = parseFloat(this.value);
+			_stage.scale.x = val;
+			_stage.scale.y = val;
+		}
+	);
+	containerDiv.appendChild(zoomSlider);
+	
+	// Create the HTMl element to display the number of the currently selected image.
+	var selectedSpan = document.createElement('span');
+	selectedSpan.id = "picSelected";
+	selectedSpan.innerHTML = "Selected: ";
+	
+	// Attach elemnts to their respective parents.
+	containerDiv.appendChild(selectedSpan);
+	canvas.appendChild(containerDiv);
+	
+	return this;
+}
+
+Zegami.prototype.size = function(numX, numY) {
+	this.numImgX = numX;
+	this.numImgY = numY;
+	
+	return this;
 }
 
 //Zegami.prototype = Zegami();
