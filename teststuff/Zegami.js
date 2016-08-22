@@ -149,6 +149,7 @@ Zegami.prototype.attachTo = function(container) {
 	this.stage.x = 0;
 	this.stage.y = 0;
 	
+	var stage = this.stage;
 	// Create a container div to put the zoom control and selected element into.
 	var containerDiv = document.createElement('div');
 	// Create slider for zoom control and add event listener to change the Pixi stage's scale.
@@ -161,8 +162,8 @@ Zegami.prototype.attachTo = function(container) {
 	zoomSlider.step = 0.1;
 	zoomSlider.addEventListener('change', function(){
 			var val = parseFloat(this.value);
-			_stage.scale.x = val;
-			_stage.scale.y = val;
+			stage.scale.x = val;
+			stage.scale.y = val;
 		}
 	);
 	containerDiv.appendChild(zoomSlider);
