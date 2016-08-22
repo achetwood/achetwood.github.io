@@ -118,11 +118,11 @@ function Zegami() {
 				}
 			}
 			
+			// Call animate.
 			animate();
 		};
 		// Set image source location to the location passed into start().
 		image.src = img;
-		//animate();
 	}
 	
 	// Animate function.
@@ -134,5 +134,5 @@ function Zegami() {
 }
 
 // Initialise Zegami Object.
-// var Zegami = new Zegami();
+var Zegami = new Zegami();
 
