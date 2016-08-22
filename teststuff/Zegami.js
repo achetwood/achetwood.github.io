@@ -70,7 +70,7 @@ var Zegami = function() {
 	
 	// Animate function.
 	this.animate = function() {
-		requestAnimationFrame(animate);
+		requestAnimationFrame(this.animate);
 		
 		this.renderer.render(this.stage);
 	}
