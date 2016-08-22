@@ -1,54 +1,54 @@
 <!DOCTYPE html>
 <!-- include three.js -->
-<script src='vendor/three.js/build/three.js'></script>
-<script src='vendor/three.js/examples/js/libs/stats.min.js'></script>
+<script src="vendor/three.js/build/three.js"></script>
+<script src="vendor/three.js/examples/js/libs/stats.min.js"></script>
 
 <!-- include js-aruco -->
-<script src='../vendor/js-aruco/svd.js'></script>
-<script src='../vendor/js-aruco/posit1-patched.js'></script>
-<script src='../vendor/js-aruco/cv.js'></script>
-<script src='../vendor/js-aruco/aruco.js'></script>
+<script src="../vendor/js-aruco/svd.js"></script>
+<script src="../vendor/js-aruco/posit1-patched.js"></script>
+<script src="../vendor/js-aruco/cv.js"></script>
+<script src="../vendor/js-aruco/aruco.js"></script>
 
 <!-- include some extensions -->
-<script src='../threex.webcamgrabbing.js'></script>
-<script src='../threex.imagegrabbing.js'></script>
-<script src='../threex.videograbbing.js'></script> 
-<script src='../threex.jsarucomarker.js'></script>
+<script src="../threex.webcamgrabbing.js"></script>
+<script src="../threex.imagegrabbing.js"></script>
+<script src="../threex.videograbbing.js"></script> 
+<script src="../threex.jsarucomarker.js"></script>
 
-<body style='margin: 0px; overflow: hidden;'>
+<body style="margin: 0px; overflow: hidden;">
 
-<div id='info' style='position: absolute; top: 0px; width: 100%;font-family:arial; font-weight: bolder; padding-top: 5px; text-align:center;'>
+<div id="info" style="position: absolute; top: 0px; width: 100%;font-family:arial; font-weight: bolder; padding-top: 5px; text-align:center;">
 	Augmented Reality with <a href="http://threejs.org" target="_blank">three.js</a>
 	- works on desktop and mobile
 	<br/>
-	require <a href='https://get.webgl.org/'>WebGL</a> and <a href='http://caniuse.com/#feat=stream'>getUserMedia</a> Support
+	require <a href="https://get.webgl.org/">WebGL</a> and <a href="http://caniuse.com/#feat=stream">getUserMedia</a> Support
 	-
-	Put this <a target='blank' href='http://jeromeetienne.github.io/threex.webar/marker/image-marker-265.html'>marker</a>
+	Put this <a target="blank" href="http://jeromeetienne.github.io/threex.webar/marker/image-marker-265.html">marker</a>
 	in front of the camera
 	<br/>
 	Source:
-	<a class='webcam' href='javascript:void();'>webcam</a> -
-	<a class='image'  href='javascript:void();'>image</a> -
-	<a class='video'  href='javascript:void();'>video</a>
+	<a class="webcam" href="javascript:void();">webcam</a> -
+	<a class="image"  href="javascript:void();">image</a> -
+	<a class="video"  href="javascript:void();">video</a>
 </div>
 
-<div id='performanceEnabler' style='position: absolute; top: 0px; right: 0px; text-align: right;background-color:rgba(255,255,255,0.5);padding-left: 10px; padding-bottom: 10px;border-width: 1px;
-  border-style: solid;'>
-	<div style='text-align: center;'>OPTIONS</div>
+<div id="performanceEnabler" style="position: absolute; top: 0px; right: 0px; text-align: right;background-color:rgba(255,255,255,0.5);padding-left: 10px; padding-bottom: 10px;border-width: 1px;
+  border-style: solid;">
+	<div style="text-align: center;">OPTIONS</div>
 	<hr/>
-	<label id='detectMarkersEnabled' title='to enable/disable marker detection in video'>
+	<label id="detectMarkersEnabled" title="to enable/disable marker detection in video">
 		detectMarkers	<input type="checkbox"> 
 	</label>
 	<br/>
-	<label id='markerToObject3DEnabled' title='to enable/disable marker to object3d conversion'>
+	<label id="markerToObject3DEnabled" title="to enable/disable marker to object3d conversion">
 		markerToObject3D <input type="checkbox"> 
 	</label>
 	<br/>
-	<label id='webglRenderEnabled' title='to enable/disable webgl rendering'>
+	<label id="webglRenderEnabled" title="to enable/disable webgl rendering">
 		webglRender	<input type="checkbox"> 
 	</label>
 	<br/>
-	<label id='markerDebugEnabled' title='to enable/disable marker debug'>
+	<label id="markerDebugEnabled" title="to enable/disable marker debug">
 		marker debug	<input type="checkbox"> 
 	</label>
 	<br/>
@@ -62,16 +62,16 @@
 		// TODO backport those 2 in Detector.js
 		var hasGetUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia) ? true : false
 		var hasMediaStreamTrackSources = MediaStreamTrack.getSources ? true : false
-		var hasWebGL = ( function () { try { var canvas = document.createElement( 'canvas' ); return !! ( window.WebGLRenderingContext && ( canvas.getContext( 'webgl' ) || canvas.getContext( 'experimental-webgl' ) ) ); } catch ( e ) { return false; } } )()
+		var hasWebGL = ( function () { try { var canvas = document.createElement( "canvas" ); return !! ( window.WebGLRenderingContext && ( canvas.getContext( "webgl" ) || canvas.getContext( "experimental-webgl" ) ) ); } catch ( e ) { return false; } } )()
 		
 		if( hasWebGL === false ){
-			alert('your browser doesn\'t support navigator.getUserMedia()')			
+			alert("your browser doesn\"t support navigator.getUserMedia()")			
 		}
 		if( hasMediaStreamTrackSources === false ){
-			alert('your browser doesn\'t support MediaStreamTrack.getSources()')			
+			alert("your browser doesn\"t support MediaStreamTrack.getSources()")			
 		}
 		if( hasGetUserMedia === false ){
-			alert('your browser doesn\'t support navigator.getUserMedia()')		
+			alert("your browser doesn\"t support navigator.getUserMedia()")		
 		}
 	})()
 	
@@ -82,26 +82,26 @@
 	var markerToObject3DEnabled	= true
 	var webglRenderEnabled		= true
 	
-	document.querySelector('#detectMarkersEnabled input').checked	= detectMarkersEnabled
-	document.querySelector('#detectMarkersEnabled input').addEventListener('change', function(){
-		detectMarkersEnabled = document.querySelector('#detectMarkersEnabled input').checked 
+	document.querySelector("#detectMarkersEnabled input").checked	= detectMarkersEnabled
+	document.querySelector("#detectMarkersEnabled input").addEventListener("change", function(){
+		detectMarkersEnabled = document.querySelector("#detectMarkersEnabled input").checked 
 	})
 
-	document.querySelector('#markerToObject3DEnabled input').checked= markerToObject3DEnabled
-	document.querySelector('#markerToObject3DEnabled input').addEventListener('change', function(){
-		markerToObject3DEnabled = document.querySelector('#markerToObject3DEnabled input').checked 
+	document.querySelector("#markerToObject3DEnabled input").checked= markerToObject3DEnabled
+	document.querySelector("#markerToObject3DEnabled input").addEventListener("change", function(){
+		markerToObject3DEnabled = document.querySelector("#markerToObject3DEnabled input").checked 
 	})
 
-	document.querySelector('#webglRenderEnabled input').checked	= webglRenderEnabled
-	document.querySelector('#webglRenderEnabled input').addEventListener('change', function(){
-		webglRenderEnabled = document.querySelector('#webglRenderEnabled input').checked
+	document.querySelector("#webglRenderEnabled input").checked	= webglRenderEnabled
+	document.querySelector("#webglRenderEnabled input").addEventListener("change", function(){
+		webglRenderEnabled = document.querySelector("#webglRenderEnabled input").checked
 		// clear the webgl canvas - thus the last webgl rendering disapears
 		renderer.clear()
 	})
 
-	document.querySelector('#markerDebugEnabled input').checked	= false
-	document.querySelector('#markerDebugEnabled input').addEventListener('change', function(){
-		jsArucoMarker.debugEnabled = document.querySelector('#markerDebugEnabled input').checked
+	document.querySelector("#markerDebugEnabled input").checked	= false
+	document.querySelector("#markerDebugEnabled input").addEventListener("change", function(){
+		jsArucoMarker.debugEnabled = document.querySelector("#markerDebugEnabled input").checked
 	})
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -110,32 +110,32 @@
 	var detectMarkersStats = new Stats();
 	detectMarkersStats.setMode( 1 );
 	document.body.appendChild( detectMarkersStats.domElement );
-        detectMarkersStats.domElement.style.position = 'absolute'
-	detectMarkersStats.domElement.style.bottom = '0px'
-	detectMarkersStats.domElement.style.right = '0px'
+        detectMarkersStats.domElement.style.position = "absolute"
+	detectMarkersStats.domElement.style.bottom = "0px"
+	detectMarkersStats.domElement.style.right = "0px"
 
 	var renderStats = new Stats();
 	renderStats.setMode( 0 );
 	document.body.appendChild( renderStats.domElement );
-        renderStats.domElement.style.position = 'absolute'
-	renderStats.domElement.style.bottom = '0px'
-	renderStats.domElement.style.left = '0px'
+        renderStats.domElement.style.position = "absolute"
+	renderStats.domElement.style.bottom = "0px"
+	renderStats.domElement.style.left = "0px"
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Handle ui button
 	//////////////////////////////////////////////////////////////////////////////////
-	document.querySelector('#info .webcam').addEventListener('click', function(event){
-		location.hash	= '#webcam'
+	document.querySelector("#info .webcam").addEventListener("click", function(event){
+		location.hash	= "#webcam"
 		location.reload()
 	})
 
-	document.querySelector('#info .image').addEventListener('click', function(event){
-		location.hash	= '#image'
+	document.querySelector("#info .image").addEventListener("click", function(event){
+		location.hash	= "#image"
 		location.reload()
 	})
 
-	document.querySelector('#info .video').addEventListener('click', function(event){
-		location.hash	= '#video'
+	document.querySelector("#info .video").addEventListener("click", function(event){
+		location.hash	= "#video"
 		location.reload()
 	})
 
@@ -155,15 +155,15 @@
 	var onRenderFcts = [];
 
 	// init scene and camera
-	var scene = new THREE.Scene()
+	var scene = new THREE.Scene();
 	var camera	= new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.01, 1000);
 	camera.position.z = 2;
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		create a markerObject3D
 	//////////////////////////////////////////////////////////////////////////////////
-	var markerObject3D = new THREE.Object3D()
-	scene.add(markerObject3D)
+	var markerObject3D = new THREE.Object3D();
+	scene.add(markerObject3D);
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		add an object in the markerObject3D
@@ -174,7 +174,7 @@
 		var geometry = new THREE.PlaneGeometry(1,1,10,10)
 		var material = new THREE.MeshBasicMaterial( {
 			wireframe : true
-		})
+		});
 		var mesh = new THREE.Mesh(geometry, material);
 		markerObject3D.add( mesh );
 
@@ -185,12 +185,43 @@
 	// add a awesome logo to the scene
 	;(function(){
 		var material = new THREE.SpriteMaterial({
-			map: THREE.ImageUtils.loadTexture( 'images/awesome.png' ),
+			map: THREE.ImageUtils.loadTexture( "images/awesome.png" ),
 		});
 		var geometry = new THREE.BoxGeometry(1,1,1)
 		var object3d = new THREE.Sprite(material );
 		object3d.scale.set( 2, 2, 1 );
 		markerObject3D.add(object3d)
+	})()
+	
+	;(function(){
+		var loader = new THREE.();
+		var modelUrl = 'models/miku/'
+		loader.load( modelUrl+'miku_v2.pmd', modelUrl+'wavefile_v2.vmd', function onLoad(mesh){
+
+			mesh.scale.set(1,1,1).multiplyScalar(1/20)
+			mesh.rotation.x = Math.PI/2
+
+			markerObject3D.add( mesh );
+
+			var animation = new THREE.Animation( mesh, mesh.geometry.animation );
+			animation.play();
+
+			var morphAnimation = new THREE.MorphAnimation2( mesh, mesh.geometry.morphAnimation );
+			morphAnimation.play();
+
+			var ikSolver = new THREE.CCDIKSolver( mesh );
+
+			onRenderFcts.push(function(now, delta){
+				THREE.AnimationHandler.update( delta/1000 );
+				ikSolver.update();
+			})
+		}, function onProgress(xhr){
+			if ( xhr.lengthComputable ) {
+				var percentComplete = xhr.loaded / xhr.total * 100;
+				console.log( Math.round(percentComplete, 2) + '% downloaded' );
+			}
+		}, function onError( xhr ) {
+		} );
 	})()
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -198,7 +229,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 
 	// handle window resize
-	window.addEventListener('resize', function(){
+	window.addEventListener("resize", function(){
 		renderer.setSize( window.innerWidth, window.innerHeight )
 		camera.aspect	= window.innerWidth / window.innerHeight
 		camera.updateProjectionMatrix()
@@ -233,19 +264,19 @@
 
 
 	// init the marker recognition
-	var jsArucoMarker	= new THREEx.JsArucoMarker()
+	var jsArucoMarker	= new THREEx.JsArucoMarker();
 
 	// if no specific image source is specified, take the webcam by default
-	if( location.hash === '' )	location.hash = '#webcam'
+	if( location.hash === "" )	location.hash = "#webcam"
 
 	// init the image source grabbing
-	if( location.hash === '#video' ){
+	if( location.hash === "#video" ){
 		var videoGrabbing = new THREEx.VideoGrabbing()
 		jsArucoMarker.videoScaleDown = 2
-	}else if( location.hash === '#webcam' ){
+	}else if( location.hash === "#webcam" ){
 		var videoGrabbing = new THREEx.WebcamGrabbing()
 		jsArucoMarker.videoScaleDown = 2
-	}else if( location.hash === '#image' ){
+	}else if( location.hash === "#image" ){
 		var videoGrabbing = new THREEx.ImageGrabbing()
 		jsArucoMarker.videoScaleDown = 10
 	}else console.assert(false)
