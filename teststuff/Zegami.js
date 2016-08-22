@@ -8,10 +8,10 @@ function Zegami() {
 	this.numImgY;
 	// this.spriteArr = [];
 	
-	var _stage = this.stage;
-	var _renderer = this.renderer;
-	var _numImgX = this.numImgX;
-	var _numImgY = this.numImgY;
+	// var _stage = this.stage;
+	// var _renderer = this.renderer;
+	// var _numImgX = this.numImgX;
+	// var _numImgY = this.numImgY;
 	var _spriteArr = [];
 	
 	// Pass in ID of the container element to attach the application to in the DOM.
@@ -121,13 +121,14 @@ function Zegami() {
 		};
 		// Set image source location to the location passed into start().
 		image.src = img;
+		animate();
 	}
 	
 	// Animate function.
 	function animate() {
 		requestAnimationFrame(animate);
 		
-		_renderer.render(_stage);
+		this.renderer.render(this.stage);
 	}
 }
 
