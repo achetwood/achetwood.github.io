@@ -13,19 +13,9 @@ describe("App Constructor", function() {
 			expect(testCore.stage).to.equal(undefined);
 			expect(testCore.renderer).to.equal(undefined);
 			expect(testCore.numImgX).to.equal(0);
-			expect(testCore.numImgY).to.equal(0);
-			// expect(testCore.spriteArr).to.equal(testArr);
-			
+			expect(testCore.numImgY).to.equal(0);		
 		});
 		
-		// it('Should populate renderer and stage objects.', function() {
-			// testCore.attachTo('test-container');
-			
-			// // var testStage = new PIXI.Container();
-			// // var testRenderer = PIXI.autoDetectRenderer(window.innerWidth, 850, {backgroundColor : 0xFFFFFF});
-			// expect(testCore.stage instanceof PIXI.Container).to.equal(true);
-			// expect(testCore.renderer instanceof PIXI.WebGLRenderer).to.equal(true);
-		// });
 	});
 });
 
@@ -34,10 +24,7 @@ describe("Check Functions", function() {
 		it('Should populate renderer and stage objects.', function() {
 			var testCore = new Zegami();
 			testCore.attachTo('test-container');
-			// var testStage = new PIXI.Container();
-			// var testRenderer = PIXI.autoDetectRenderer(window.innerWidth, 850, {backgroundColor : 0xFFFFFF});
-			// expect(testCore.stage).to.equal(testStage);
-			// expect(testCore.renderer).to.equal(testRenderer);
+			
 			expect(testCore.stage instanceof PIXI.Container).to.equal(true);
 			expect(testCore.renderer instanceof PIXI.WebGLRenderer).to.equal(true);
 		});
@@ -50,19 +37,19 @@ describe("Check Functions", function() {
 			expect(testCore.numImgY).to.equal(testNumY);
 		});
 		
-		it('Should load the passed in image and ', function(done) {
-			var testCore = new Zegami();
-			var testNumX = 5;
-			var testNumY = 3;
-			testCore.attachTo('test-container');
-			testCore.size(testNumX, testNumY);
-			testCore.start('../cat.jpg', function(err) {
-				expect(testCore.spriteArr.length).to.equal((testNumX * testNumY));
-				expect(testCore.spriteArr[0] instanceof PIXI.Sprite).to.equal(true);
+		// it('Should load the passed in image and ', function(done) {
+			// var testCore = new Zegami();
+			// var testNumX = 5;
+			// var testNumY = 3;
+			// testCore.attachTo('test-container');
+			// testCore.size(testNumX, testNumY);
+			// testCore.start('../cat.jpg', function(err) {
+				// expect(testCore.spriteArr.length).to.equal((testNumX * testNumY));
+				// expect(testCore.spriteArr[0] instanceof PIXI.Sprite).to.equal(true);
 				
-				done();
-			});
-		});
+				// done();
+			// });
+		// });
 			
 			// expect(testCore.spriteArr.length).to.equal((testNumX * testNumY));
 			// expect(testCore.spriteArr[0] instanceof PIXI.Sprite).to.equal(true);
