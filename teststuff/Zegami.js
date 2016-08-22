@@ -117,7 +117,7 @@ function Zegami() {
 				}
 			}
 			
-			animate();
+			// animate();
 		};
 		// Set image source location to the location passed into start().
 		image.src = img;
