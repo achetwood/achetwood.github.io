@@ -2,8 +2,8 @@
 
 function Zegami() {
 	
-	this.stage = new PIXI.Container();
-	this.renderer = new PIXI.autoDetectRenderer(window.innerWidth, 850, {backgroundColor : 0xFFFFFF});
+	this.stage;
+	this.renderer;
 	this.numImgX;
 	this.numImgY;
 	this.spriteArr = [];
@@ -84,10 +84,10 @@ Zegami.prototype = {
 		var wWidth = window.innerWidth;
 		var wHeight = 850; 
 		
-		//this.renderer = PIXI.autoDetectRenderer(wWidth, wHeight, {backgroundColor : 0xFFFFFF});
+		this.renderer = PIXI.autoDetectRenderer(wWidth, wHeight, {backgroundColor : 0xFFFFFF});
 		canvas.appendChild(this.renderer.view);
 		
-		// this.stage = new PIXI.Container();
+		this.stage = new PIXI.Container();
 		this.stage.x = 0;
 		this.stage.y = 0;
 		
@@ -135,5 +135,5 @@ Zegami.prototype = {
 Zegami.prototype.constructor = Zegami;
 
 // Initialise Zegami Object.
-// var Zegami = new Zegami();
+var Zegami = new Zegami();
 
