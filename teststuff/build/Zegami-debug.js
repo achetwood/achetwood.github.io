@@ -3,7 +3,7 @@
 function Zegami() {
 	
 	this.stage = new PIXI.Container();
-	this.renderer = new PIXI.autoDetectRenderer(wWidth, wHeight, {backgroundColor : 0xFFFFFF});;
+	this.renderer = new PIXI.autoDetectRenderer(wWidth, wHeight, {backgroundColor : 0xFFFFFF});
 	this.numImgX;
 	this.numImgY;
 	this.spriteArr = [];
