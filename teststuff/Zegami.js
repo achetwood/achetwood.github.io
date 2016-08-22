@@ -135,5 +135,5 @@ Zegami.prototype = {
 Zegami.prototype.constructor = Zegami;
 
 // Initialise Zegami Object.
-var Zegami = new Zegami();
+// var Zegami = new Zegami();
 
