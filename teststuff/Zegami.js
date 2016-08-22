@@ -8,10 +8,10 @@ function Zegami() {
 	this.numImgY;
 	// this.spriteArr = [];
 	
-	// var _stage = this.stage;
-	// var _renderer;
-	// var _numImgX;
-	// var _numImgY;
+	var _stage = this.stage;
+	var _renderer = this.renderer;
+	var _numImgX = this.numImgX;
+	var _numImgY = this.numImgY;
 	var _spriteArr = [];
 	
 	// Pass in ID of the container element to attach the application to in the DOM.
@@ -127,7 +127,7 @@ function Zegami() {
 	function animate() {
 		requestAnimationFrame(animate);
 		
-		this.renderer.render(this.stage);
+		_renderer.render(_stage);
 	}
 }
 
