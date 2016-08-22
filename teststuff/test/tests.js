@@ -1,5 +1,6 @@
 var expect = chai.expect;
 
+// Tests
 describe("App Constructor", function() {
 	describe("Check", function(){
 		it('Should check for equality of 1 and 1.', function() {
@@ -7,7 +8,7 @@ describe("App Constructor", function() {
 		});
 		
 		it('Should create an object with undefined public variables', function() {
-			var testCore = new Zegami();
+			var testCore = new TestApp();
 			var testArr = [];
 			
 			expect(testCore.stage).to.equal(undefined);
@@ -19,17 +20,18 @@ describe("App Constructor", function() {
 	});
 });
 
+// Tests to briefly check the attachTo and size functions.
 describe("Check Functions", function() {
 	describe("Check", function(){
 		it('Should populate renderer and stage objects.', function() {
-			var testCore = new Zegami();
+			var testCore = new TestApp();
 			testCore.attachTo('test-container');
 			
 			expect(testCore.stage instanceof PIXI.Container).to.equal(true);
 			expect(testCore.renderer instanceof PIXI.WebGLRenderer).to.equal(true);
 		});
 		it('Should set objects numImgX & numImgY objects to the passed in values.', function() {
-			var testCore = new Zegami();
+			var testCore = new TestApp();
 			var testNumX = 5;
 			var testNumY = 9;
 			testCore.size(testNumX, testNumY);

@@ -1,6 +1,6 @@
 
 
-function Zegami() {
+function TestApp() {
 	
 	this.stage;
 	this.renderer;
@@ -77,8 +77,8 @@ function Zegami() {
 	}
 }
 
-Zegami.prototype = {
-	constructor: Zegami,
+TestApp.prototype = {
+	constructor: TestApp,
 	
 	// Pass in ID of the container element to attach the application to in the DOM.
 	// Initialises the renderer and additional HTML elements and adds them to the page.
@@ -137,8 +137,8 @@ Zegami.prototype = {
 	}
 	
 };
-Zegami.prototype.constructor = Zegami;
+TestApp.prototype.constructor = TestApp;
 
 // Initialise Zegami Object.
-//var Zegami = new Zegami();
+var Zegami = new TestApp();
 

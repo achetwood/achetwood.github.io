@@ -11,7 +11,7 @@ var addsrc = require('gulp-add-src');
 var buildDestinationFolder = 'build';
 
 gulp.task('js', function () {
-	return gulp.src(['./Zegami.js'])
+	return gulp.src(['./TestApp.js'])
 		.pipe(minify({
 			ext: {
 				src:'-debug.js',

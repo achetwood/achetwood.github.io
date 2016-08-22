@@ -1,11 +1,11 @@
 
 
-function Zegami() {
+function TestApp() {
 	
 	this.stage;
 	this.renderer;
-	this.numImgX;
-	this.numImgY;
+	this.numImgX = 0;
+	this.numImgY = 0;
 	this.spriteArr = [];
 	
 	var _stage;
@@ -13,7 +13,7 @@ function Zegami() {
 	
 	// Start function.
 	// Pass in image url and proceeds to load, render images in a grid and call animate on pixi renderer.
-	this.start = function(img) {
+	this.start = function(img, cb) {
 		
 		// Create function scope copies of the private vars.
 		var _numImgX = this.numImgX;
@@ -63,6 +63,11 @@ function Zegami() {
 		image.src = img;
 		// Call animate.
 		animate();
+		
+		if (cb)
+		{
+			cb();
+		}
 	}
 		
 	// Animate function.
@@ -72,8 +77,8 @@ function Zegami() {
 	}
 }
 
-Zegami.prototype = {
-	constructor: Zegami,
+TestApp.prototype = {
+	constructor: TestApp,
 	
 	// Pass in ID of the container element to attach the application to in the DOM.
 	// Initialises the renderer and additional HTML elements and adds them to the page.
@@ -132,8 +137,8 @@ Zegami.prototype = {
 	}
 	
 };
-Zegami.prototype.constructor = Zegami;
+TestApp.prototype.constructor = TestApp;
 
 // Initialise Zegami Object.
-var Zegami = new Zegami();
+var Zegami = new TestApp();
 
