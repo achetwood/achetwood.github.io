@@ -2,10 +2,10 @@
 
 var Zegami = function() {
 	
-	// this.stage;
-	// this.renderer;
-	// this.numImgX;
-	// this.numImgY;
+	this.stage;
+	this.renderer;
+	this.numImgX;
+	this.numImgY;
 	// this.spriteArr = [];
 	
 	var _stage;
@@ -23,14 +23,16 @@ var Zegami = function() {
 		var wWidth = window.innerWidth;
 		var wHeight = 850; 
 		
-		_renderer = PIXI.autoDetectRenderer(wWidth, wHeight, {backgroundColor : 0xFFFFFF});
-		canvas.appendChild(_renderer.view);
+		this.renderer = PIXI.autoDetectRenderer(wWidth, wHeight, {backgroundColor : 0xFFFFFF});
+		canvas.appendChild(this.renderer.view);
 		
-		_stage = new PIXI.Container();
-		_stage.x = 0;
-		_stage.y = 0;
+		this.stage = new PIXI.Container();
+		this.stage.x = 0;
+		this.stage.y = 0;
 		
-		// var stage = this.stage;
+		_renderer = this.renderer;
+		_stage = this.stage;
+		
 		// Create a container div to put the zoom control and selected element into.
 		var containerDiv = document.createElement('div');
 		// Create slider for zoom control and add event listener to change the Pixi stage's scale.
@@ -64,8 +66,8 @@ var Zegami = function() {
 	// Function to set size of the image grid.
 	// Passing in how many images required on the X axis and on the Y axis.
 	this.size = function(numX, numY) {
-		_numImgX = numX;
-		_numImgY = numY;
+		this.numImgX = numX;
+		this.numImgY = numY;
 		
 		return this;
 	}
@@ -75,10 +77,10 @@ var Zegami = function() {
 	this.start = function(img) {
 		
 		// Create function scope copies of the private vars.
-		var numImgX = _numImgX;
-		var numImgY = _numImgY;
-		var renderer = _renderer;
-		var stage = _stage;
+		_numImgX = this.numImgX;
+		_numImgY = this.numImgY;
+		// var renderer = _renderer;
+		// var stage = _stage;
 		
 		var spriteArr = _spriteArr;
 		
@@ -89,9 +91,9 @@ var Zegami = function() {
 			var baseTexture = new PIXI.BaseTexture(image)
 			var texture = new PIXI.Texture(baseTexture);
 			
-			for ( y = 0; y < numImgY; y++ )
+			for ( y = 0; y < _numImgY; y++ )
 			{
-				for ( x = 0; x < numImgX; x++)
+				for ( x = 0; x < _numImgX; x++)
 				{
 					var imgSprite = new PIXI.Sprite(texture);
 					imgSprite.x = (texture.width + 20) * x;
@@ -114,7 +116,7 @@ var Zegami = function() {
 						txtBox.innerHTML = "Selected: " + imgNum;
 					}
 					// Add sprite to the stage.
-					stage.addChild(imgSprite);
+					_stage.addChild(imgSprite);
 				}
 			}
 			
