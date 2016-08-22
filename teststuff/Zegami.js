@@ -24,7 +24,7 @@ var Zegami = function() {
 		_renderer = this.renderer;
 		_stage = this.stage;
 		
-		var spriteArr = _spriteArr;
+		var _spriteArr = this.spriteArr;
 		
 		var image = new Image();
 		
@@ -44,12 +44,12 @@ var Zegami = function() {
 					imgSprite.interactive = true;
 					
 					// Add images to array and bind mouse click/touch event to sprites.
-					spriteArr.push(imgSprite);
+					_spriteArr.push(imgSprite);
 					// Get the current sprite in the sprite array and add event listener to that sprite.
 					// Using bind to bind the array position data to the function, allows the population of the text box.
-					var currLength = spriteArr.length - 1;
-					spriteArr[currLength].on('mousedown', onClick.bind(currLength));
-					spriteArr[currLength].on('touchstart', onClick.bind(currLength));
+					var currLength = _spriteArr.length - 1;
+					_spriteArr[currLength].on('mousedown', onClick.bind(currLength));
+					_spriteArr[currLength].on('touchstart', onClick.bind(currLength));
 					
 					function onClick()
 					{
