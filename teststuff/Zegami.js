@@ -1,6 +1,6 @@
 
 
-function Zegami() {
+var Zegami = function() {
 	
 	// this.stage;
 	// this.renderer;
@@ -133,7 +133,7 @@ function Zegami() {
 	}
 }
 
-Zegami.prototype = Zegami();
+//Zegami.prototype = Zegami();
 // Initialise Zegami Object.
 var Zegami = new Zegami();
 
