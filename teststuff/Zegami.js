@@ -4,8 +4,8 @@ function Zegami() {
 	
 	this.stage;
 	this.renderer;
-	this.numImgX;
-	this.numImgY;
+	this.numImgX = 0;
+	this.numImgY = 0;
 	this.spriteArr = [];
 	
 	var _stage;
@@ -13,7 +13,7 @@ function Zegami() {
 	
 	// Start function.
 	// Pass in image url and proceeds to load, render images in a grid and call animate on pixi renderer.
-	this.start = function(img) {
+	this.start = function(img, cb) {
 		
 		// Create function scope copies of the private vars.
 		var _numImgX = this.numImgX;
@@ -63,6 +63,11 @@ function Zegami() {
 		image.src = img;
 		// Call animate.
 		animate();
+		
+		if (cb)
+		{
+			cb();
+		}
 	}
 		
 	// Animate function.
@@ -135,5 +140,5 @@ Zegami.prototype = {
 Zegami.prototype.constructor = Zegami;
 
 // Initialise Zegami Object.
-var Zegami = new Zegami();
+//var Zegami = new Zegami();
 
