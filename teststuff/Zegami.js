@@ -2,16 +2,16 @@
 
 function Zegami() {
 	
-	this.stage;
-	this.renderer;
-	this.numImgX;
-	this.numImgY;
+	// this.stage;
+	// this.renderer;
+	// this.numImgX;
+	// this.numImgY;
 	// this.spriteArr = [];
 	
-	// var _stage = this.stage;
-	// var _renderer = this.renderer;
-	// var _numImgX = this.numImgX;
-	// var _numImgY = this.numImgY;
+	var _stage;
+	var _renderer;
+	var _numImgX;
+	var _numImgY;
 	var _spriteArr = [];
 	
 	// Pass in ID of the container element to attach the application to in the DOM.
@@ -23,14 +23,14 @@ function Zegami() {
 		var wWidth = window.innerWidth;
 		var wHeight = 850; 
 		
-		this.renderer = PIXI.autoDetectRenderer(wWidth, wHeight, {backgroundColor : 0xFFFFFF});
+		_renderer = PIXI.autoDetectRenderer(wWidth, wHeight, {backgroundColor : 0xFFFFFF});
 		canvas.appendChild(this.renderer.view);
 		
-		this.stage = new PIXI.Container();
-		this.stage.x = 0;
-		this.stage.y = 0;
+		_stage = new PIXI.Container();
+		_stage.x = 0;
+		_stage.y = 0;
 		
-		var stage = this.stage;
+		// var stage = this.stage;
 		// Create a container div to put the zoom control and selected element into.
 		var containerDiv = document.createElement('div');
 		// Create slider for zoom control and add event listener to change the Pixi stage's scale.
@@ -43,8 +43,8 @@ function Zegami() {
 		zoomSlider.step = 0.1;
 		zoomSlider.addEventListener('change', function(){
 			var val = parseFloat(this.value);
-			stage.scale.x = val;
-			stage.scale.y = val;}
+			_stage.scale.x = val;
+			_stage.scale.y = val;}
 		);
 		containerDiv.appendChild(zoomSlider);
 		
@@ -63,8 +63,8 @@ function Zegami() {
 	// Function to set size of the image grid.
 	// Passing in how many images required on the X axis and on the Y axis.
 	this.size = function(numX, numY) {
-		this.numImgX = numX;
-		this.numImgY = numY;
+		_numImgX = numX;
+		_numImgY = numY;
 		
 		return this;
 	}
@@ -74,10 +74,10 @@ function Zegami() {
 	this.start = function(img) {
 		
 		// Create function scope copies of the private vars.
-		var numImgX = this.numImgX;
-		var numImgY = this.numImgY;
-		var renderer = this.renderer;
-		var stage = this.stage;
+		var numImgX = _numImgX;
+		var numImgY = _numImgY;
+		var renderer = _renderer;
+		var stage = _stage;
 		
 		var spriteArr = _spriteArr;
 		
@@ -117,18 +117,18 @@ function Zegami() {
 				}
 			}
 			
-			// animate();
+			animate();
 		};
 		// Set image source location to the location passed into start().
 		image.src = img;
-		animate();
+		//animate();
 	}
 	
 	// Animate function.
 	function animate() {
 		requestAnimationFrame(animate);
 		
-		this.renderer.render(this.stage);
+		_renderer.render(_stage);
 	}
 }
 
