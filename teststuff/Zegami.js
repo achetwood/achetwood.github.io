@@ -131,9 +131,10 @@ Zegami.prototype = {
 	size: function(numX, numY) {
 		this.numImgX = numX;
 		this.numImgY = numY;
+		
+		return this;
 	}
 	
-	return this;
 };
 	
 	
