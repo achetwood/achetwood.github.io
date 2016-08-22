@@ -164,7 +164,7 @@ Zegami.prototype.start = function(img) {
 				_spriteArr.push(imgSprite);
 				// Get the current sprite in the sprite array and add event listener to that sprite.
 				// Using bind to bind the array position data to the function, allows the population of the text box.
-				var currLength = spriteArr.length - 1;
+				var currLength = _spriteArr.length - 1;
 				_spriteArr[currLength].on('mousedown', onClick.bind(currLength));
 				_spriteArr[currLength].on('touchstart', onClick.bind(currLength));
 				
