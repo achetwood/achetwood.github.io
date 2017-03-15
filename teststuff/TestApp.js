@@ -140,5 +140,5 @@ TestApp.prototype = {
 TestApp.prototype.constructor = TestApp;
 
 // Initialise Zegami Object.
-var Zegami = new TestApp();
+var Testing = new TestApp();
 
